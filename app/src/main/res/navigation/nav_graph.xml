@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
+            app:startDestination="@id/newsListFragment">
+
+    <fragment
+            android:id="@+id/newsListFragment"
+            android:name="com.ozgs.newsapp.ui.NewsListFragment"
+            android:label="@string/news_list_fragment_label"
+            tools:layout="@layout/fragment_newslist">
+        <action
+                android:id="@+id/actionToNewsItemFragment"
+                app:destination="@id/newsItemFragment">
+<!--                app:popExitAnim="@android:anim/fade_out">-->
+        </action>
+
+<!--        <argument-->
+<!--                android:name="lontd"-->
+<!--                app:argType="float" android:defaultValue="200"/>-->
+<!--        <argument-->
+<!--                android:name="latd"-->
+<!--                app:argType="float" android:defaultValue="200"/>-->
+<!--        <argument-->
+<!--                android:name="searched"-->
+<!--                app:argType="boolean" android:defaultValue="false"/>-->
+<!--        <argument-->
+<!--                android:name="location"-->
+<!--                app:argType="string" android:defaultValue=""/>-->
+    </fragment>
+
+    <fragment
+            android:name="com.ozgs.newsapp.ui.NewsItemFragment"
+            android:id="@+id/newsItemFragment"
+            tools:layout="@layout/fragment_news_item">
+        <action
+                android:id="@+id/action_searchFragment_to_mapsFragment"
+                app:destination="@id/newsListFragment"
+                app:popUpTo="@id/newsListFragment"
+                app:popUpToInclusive="true" />
+    </fragment>
+
+</navigation>
