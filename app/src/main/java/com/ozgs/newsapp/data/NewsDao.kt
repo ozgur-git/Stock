@@ -9,7 +9,10 @@ import androidx.room.*
 interface NewsDao {
 
     @Query("select articles from NewsTable")
-    fun getNews(): LiveData<List<NewsItem>>
+    fun getNewsItems(): LiveData<List<NewsItem>>
+
+    @Query("select * from NewsTable")
+    fun getNews(): LiveData<List<News>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertNews(newsItem: NewsItem)
