@@ -16,7 +16,7 @@ data class News(
     data class NewsItem(
         @Embedded
         val source:Agency,
-        val author: String="",
+        val author: String?="",
         val title:String="",
         val description:String="",
         val url:String="",

@@ -10,8 +10,5 @@ class NewsRepository @Inject constructor(
     private val appExecutors: AppExecutors,
     private val mTempService: NewsService
 ) {
-
     fun getNews(): LiveData<List<News>> = newsDao.getNews()
-
-
 }
