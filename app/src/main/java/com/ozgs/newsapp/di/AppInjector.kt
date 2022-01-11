@@ -31,10 +31,10 @@ import dagger.android.support.HasSupportFragmentInjector
  * Helper class to automatically inject fragments if they implement [Injectable].
  */
 object AppInjector {
-    fun init(githubApp: MainApplication) {
-        DaggerAppComponent.builder().application(githubApp)
-            .build().inject(githubApp)
-        githubApp
+    fun init(app: MainApplication) {
+        DaggerAppComponent.builder().application(app)
+            .build().inject(app)
+        app
             .registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
                 override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                     handleActivity(activity)

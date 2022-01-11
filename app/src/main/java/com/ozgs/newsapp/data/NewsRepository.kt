@@ -6,12 +6,12 @@ import com.ozgs.newsapp.workers.AppExecutors
 import javax.inject.Inject
 
 class NewsRepository @Inject constructor(
-    private val tempDao: NewsDao,
+    private val newsDao: NewsDao,
     private val appExecutors: AppExecutors,
     private val mTempService: NewsService
 ) {
 
-    fun getNews(): LiveData<List<News>> = tempDao.getNews()
+    fun getNews(): LiveData<List<News>> = newsDao.getNews()
 
 
 }

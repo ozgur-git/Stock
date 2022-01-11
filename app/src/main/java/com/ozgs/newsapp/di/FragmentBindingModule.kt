@@ -8,7 +8,7 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class FragmentBindingModule {
     @ContributesAndroidInjector
-    internal abstract fun mapsFragment(): NewsListFragment
+    internal abstract fun newsListFragment(): NewsListFragment
     @ContributesAndroidInjector
-    internal abstract fun searchFragment(): NewsItemFragment
+    internal abstract fun newsItemFragment(): NewsItemFragment
 }

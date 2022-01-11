@@ -11,13 +11,13 @@ class NewsItemConverter {
     private val gson = Gson()
 
     @TypeConverter
-    fun stringToList(input: String): List<NewsItem> {
-        val listType = object : TypeToken<List<NewsItem>>() {}.type
+    fun stringToList(input: String): List<News.NewsItem> {
+        val listType = object : TypeToken<List<News.NewsItem>>() {}.type
         return gson.fromJson(input, listType)
     }
 
     @TypeConverter
-    fun listToJSON(list: List<NewsItem>): String {
+    fun listToJSON(list: List<News.NewsItem>): String {
         return gson.toJson(list)
     }
 }
