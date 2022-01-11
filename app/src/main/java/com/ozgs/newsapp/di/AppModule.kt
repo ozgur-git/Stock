@@ -4,12 +4,14 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import com.ozgs.newsapp.api.NewsInterceptor
 import com.ozgs.newsapp.api.NewsService
 import com.ozgs.newsapp.data.AppDatabase
 import com.ozgs.newsapp.data.NewsDao
 import com.ozgs.newsapp.utilities.LiveDataCallAdapterFactory
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -19,21 +21,21 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideGeonamesService(): NewsService {
+    fun provideNewsService(): NewsService {
         return Retrofit.Builder()
-            .baseUrl("http://api.geonames.org")
+            .baseUrl("https://newsapi.org/v2")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
-//            .client(provideGeonamesOkHttpClient())
+            .client(provideNewsOkHttpClient())
             .build()
             .create(NewsService::class.java)
     }
 
-//    @Singleton
-//    @Provides
-//    fun provideGeonamesOkHttpClient():OkHttpClient{
-////        return OkHttpClient.Builder().addInterceptor(GeonamesInterceptor()).build()
-//    }
+    @Singleton
+    @Provides
+    fun provideNewsOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder().addInterceptor(NewsInterceptor()).build()
+    }
 
     @Singleton
     @Provides
