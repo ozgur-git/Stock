@@ -24,7 +24,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.ozgs.newsapp.data.AppDatabase
-import com.ozgs.newsapp.data.Articles
 import com.ozgs.newsapp.data.News
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -39,11 +38,11 @@ class SeedDatabaseWorker(
             if (filename != null) {
                 applicationContext.assets.open(filename).use { inputStream ->
                     JsonReader(inputStream.reader()).use { jsonReader ->
-                        val newsType = object : TypeToken<List<News>>() {}.type
-                        val newsList: List<News> = Gson().fromJson(jsonReader, newsType)
+                        val newsType = object : TypeToken<News>() {}.type
+                        val newsList: News = Gson().fromJson(jsonReader, newsType)
                         Log.d(TAG,newsList.toString())
                         val database = AppDatabase.getInstance(applicationContext)
-                        database.newsDao().insertAll(newsList)
+                        database.newsDao().insert(newsList)
                         Result.success()
                     }
                 }

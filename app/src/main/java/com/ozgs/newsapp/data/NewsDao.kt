@@ -13,6 +13,6 @@ interface NewsDao {
     fun getNews(): LiveData<List<News>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(tempData:List<News>)
+    suspend fun insert(tempData:News)
 
 }
