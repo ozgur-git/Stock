@@ -16,6 +16,7 @@
 
 package com.ozgs.newsapp.api
 
+import android.util.Log
 import retrofit2.Response
 import java.util.regex.Pattern
 
@@ -31,6 +32,7 @@ sealed class ApiResponse<T> {
         }
 
         fun <T> create(response: Response<T>): ApiResponse<T> {
+            Log.d("ntwrk", "response code is ${response.code()}")
             return if (response.isSuccessful) {
                 val body = response.body()
                 if (body == null || response.code() == 204) {
@@ -42,6 +44,7 @@ sealed class ApiResponse<T> {
                     )
                 }
             } else {
+                Log.d("ntwrk", "response code is ${response.code()}")
                 val msg = response.errorBody()?.string()
                 val errorMsg = if (msg.isNullOrEmpty()) {
                     response.message()

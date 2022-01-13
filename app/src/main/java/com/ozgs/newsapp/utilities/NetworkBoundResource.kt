@@ -1,6 +1,7 @@
 
 package com.ozgs.newsapp.utilities
 
+import android.util.Log
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
@@ -53,6 +54,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>
     }
 
     private fun fetchFromNetwork(dbSource: LiveData<ResultType>) {
+        Log.d("ntwrk", "called")
         val apiResponse = createCall()
         result.addSource(dbSource) { newData ->
             setValue(Resource.loading(newData))

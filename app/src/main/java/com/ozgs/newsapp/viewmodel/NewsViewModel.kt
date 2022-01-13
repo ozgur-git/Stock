@@ -11,7 +11,7 @@ class NewsViewModel @Inject constructor (
     private val newsRepository: NewsRepository
 ):ViewModel(){
 
-    lateinit var newsList:LiveData<List<News>>
+    lateinit var newsList:LiveData<News>
     val fetchedNews: MediatorLiveData<Resource<News>> = MediatorLiveData()
 
     init {
@@ -24,7 +24,8 @@ class NewsViewModel @Inject constructor (
     }
 
     fun fetchNews() {
-//        fetchedNews.addSource(newsRepository.getMeteoData(longitude,latitude)){value->temp.value=value}
+        val news=newsRepository.fetchNews()
+        fetchedNews.addSource(news){value->fetchedNews.value=value}
     }
 
 

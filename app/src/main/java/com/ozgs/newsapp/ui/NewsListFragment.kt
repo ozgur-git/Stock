@@ -49,13 +49,18 @@ class NewsListFragment : Fragment(),Injectable {
     ): View? {
 
         newsViewModel= ViewModelProvider(this,viewModelFactory)[NewsViewModel::class.java]
-
-        newsViewModel.newsList.observe(viewLifecycleOwner){
-            Log.d("database",it.toString())
-        }
+        newsViewModel.fetchNews()
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_newslist, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        newsViewModel.fetchedNews.observe(viewLifecycleOwner){
+            Log.d("database",it.toString())
+        }
+
     }
 
     companion object {

@@ -1,6 +1,8 @@
 package com.ozgs.newsapp.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
+import com.ozgs.newsapp.api.ApiResponse
 import com.ozgs.newsapp.api.NewsService
 import com.ozgs.newsapp.utilities.NetworkBoundResource
 import com.ozgs.newsapp.vo.Resource
@@ -12,28 +14,27 @@ class NewsRepository @Inject constructor(
     private val appExecutors: AppExecutors,
     private val tempService: NewsService
 ) {
-    fun getNews(): LiveData<List<News>> = newsDao.getNews()
+    fun getNews(): LiveData<News> = newsDao.getNews()
 
-//    fun fetchNews(shouldFetch: Boolean = true):LiveData<Resource<List<News>>> {
-//        return object : NetworkBoundResource<List<News>, News>(appExecutors) {
-//            override fun saveCallResult(item: News) {
-//                newsDao.deleteNearby()
-//                item.geonames.forEach {
-//                    it.isNearby = true
-//                    newsDao.insertFavorite(it)
-//                }
-//            }
-//
-//            override fun shouldFetch(data: List<News>?): Boolean {
-//                return shouldFetch
-//            }
-//
-//            override fun loadFromDb(): LiveData<List<News>> {
-//                return newsDao.getNearby()
-//            }
-//
-//            override fun createCall() = tempService.getTopHeadlines()
-//
-//        }.asLiveData()
-//    }
+    fun fetchNews(shouldFetch: Boolean = true): LiveData<Resource<News>> {
+        return object : NetworkBoundResource<News, News>(appExecutors) {
+            override fun saveCallResult(item: News) {
+                    newsDao.insert(item)
+                }
+
+            override fun shouldFetch(data: News?): Boolean {
+                return true
+            }
+
+            override fun loadFromDb(): LiveData<News> {
+                return newsDao.getNews()
+            }
+
+            override fun createCall(): LiveData<ApiResponse<News>> {
+                Log.d("ntwrk", "fetch is called ")
+                return tempService.getTopHeadlines()
+            }
+
+        }.asLiveData()
+    }
 }

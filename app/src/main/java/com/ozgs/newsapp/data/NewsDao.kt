@@ -10,9 +10,9 @@ interface NewsDao {
 
 
     @Query("select * from NewsTable")
-    fun getNews(): LiveData<List<News>>
+    fun getNews(): LiveData<News>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(tempData:News)
+    fun insert(tempData:News)
 
 }

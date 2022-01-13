@@ -23,7 +23,7 @@ class AppModule {
     @Provides
     fun provideNewsService(): NewsService {
         return Retrofit.Builder()
-            .baseUrl("https://newsapi.org/v2/")
+            .baseUrl("https://newsapi.org/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .client(provideNewsOkHttpClient())
