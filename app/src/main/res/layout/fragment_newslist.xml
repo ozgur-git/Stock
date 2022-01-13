@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ui.NewsListFragment">
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".MainActivity">
+    <data>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/main_coordinator_base"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_height="match_parent">
+        <com.google.android.material.appbar.AppBarLayout
+                android:elevation="4dp"
+                android:theme="@style/ToolBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize">
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_gravity="center"
+                            android:id="@+id/toolbar_title"
+                            android:text="@string/toolbar_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
-</FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.ozgs.newsapp.R
 import com.ozgs.newsapp.data.NewsRepository
+import com.ozgs.newsapp.databinding.FragmentNewslistBinding
 import com.ozgs.newsapp.di.Injectable
 import com.ozgs.newsapp.viewmodel.GithubViewModelFactory
 import com.ozgs.newsapp.viewmodel.NewsViewModel
@@ -48,11 +50,17 @@ class NewsListFragment : Fragment(),Injectable {
         savedInstanceState: Bundle?
     ): View? {
 
+        val binding= FragmentNewslistBinding.inflate(inflater,container,false)
+        val toolbar=binding.toolBar
         newsViewModel= ViewModelProvider(this,viewModelFactory)[NewsViewModel::class.java]
         newsViewModel.fetchNews()
+        with(activity as AppCompatActivity) {
+            setSupportActionBar(toolbar)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_newslist, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
