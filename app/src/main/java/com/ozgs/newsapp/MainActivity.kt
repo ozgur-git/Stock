@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(),HasSupportFragmentInjector {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        Log.d("den", "try this")
+        Log.d("denppp", "try this")
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
