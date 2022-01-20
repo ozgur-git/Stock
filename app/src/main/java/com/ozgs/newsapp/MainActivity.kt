@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(),HasSupportFragmentInjector {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.navController
-
+        Log.d("deneme", "try this")
         setupActionBarWithNavController(navController)
     }
 
