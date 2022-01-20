@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+                android:id="@+id/nav_hisseendeks_fragment"
+                android:title="Hisse ve Endeksler" />
+        <item
+                android:id="@+id/nav_yukselenler_fragment"
+                android:title="Yukselenler" />
+        <item
+                android:id="@+id/nav_dusenler_fragment"
+                android:title="Dusenler" />
+        <item
+                android:id="@+id/nav_30_fragment"
+                android:title="Hacme Gore-30" />
+        <item
+                android:id="@+id/nav_50_fragment"
+                android:title="Hacme Gore-50" />
+        <item
+                android:id="@+id/nav_100_fragment"
+                android:title="Hacme Gore-100" />
+    </group>
+</menu>
